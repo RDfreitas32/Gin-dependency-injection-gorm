@@ -1,5 +1,10 @@
 package db
 
+import (
+	"gorm.io/driver/mysql"
+	"gorm.io/gorm"
+)
+
 var (
 	//DB is an instance of the data base
 	DB *gorm.DB

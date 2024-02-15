@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	models "gerenciador-tarefas/pkg/moldels"
+	models "dependency-gin/pkg/moldels"
 
 	"gorm.io/gorm"
 )

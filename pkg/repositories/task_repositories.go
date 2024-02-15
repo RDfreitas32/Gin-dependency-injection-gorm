@@ -29,6 +29,8 @@ func NewTaskRepository(db *gorm.DB) TaskRepository {
 func (r *taskRepository) Create(task *models.Task) error {
 	return r.db.Create(task).Error
 }
+
+// GetAll return all tasks
 func (r *taskRepository) GetAll() ([]models.Task, error) {
 	var tasks []models.Task
 	if err := r.db.Find(&tasks).Error; err != nil {
@@ -46,10 +48,12 @@ func (r *taskRepository) GetByID(id uint) (*models.Task, error) {
 	return &task, nil
 }
 
+// Update updates tasks
 func (r *taskRepository) Update(task *models.Task) error {
 	return r.db.Save(task).Error
 }
 
+// Delete deletes tasks
 func (r *taskRepository) Delete(id uint) error {
 	return r.db.Delete(&models.Task{}, id).Error
 }

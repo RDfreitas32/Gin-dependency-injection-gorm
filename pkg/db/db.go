@@ -1,10 +1,13 @@
 package db
 
 import (
+	models "dependency/pkg/moldels"
+
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
+// depois configurar o BD do outro jeito, pois fica melhor para injeção de dependencia
 var (
 	//DB is an instance of the data base
 	DB *gorm.DB
@@ -19,7 +22,7 @@ func InitDB() error {
 	}
 
 	// Auto migration
-	err = DB.AutoMigrate(&models.Task)
+	err = DB.AutoMigrate(&models.Task{})
 	if err != nil {
 		return err
 	}

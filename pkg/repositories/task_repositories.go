@@ -1,7 +1,7 @@
 package repositories
 
 import (
-	models "dependency-gin/pkg/moldels"
+	models "dependency/pkg/moldels"
 
 	"gorm.io/gorm"
 )

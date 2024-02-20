@@ -23,7 +23,12 @@ func NewTaskController(service services.TaskService) *TaskController {
 func SetupTaskRoutes(router *gin.Engine, service services.TaskService) {
 	controller := NewTaskController(service)
 
-	//criar as funções antes das rotas
+	router.POST("/tasks", controller.CreateTask)
+	router.GET("/tasks", controller.GetTasks)
+	router.GET("/tasks/:id", controller.GetTaskByID)
+	router.PUT("/tasks/:id", controller.GetTaskByID)
+	router.DELETE("/tasks/:id", controller.DeleteTask)
+
 }
 
 // CreateTask manipulator to create a new task

@@ -1,8 +1,6 @@
 package db
 
 import (
-	models "dependency/pkg/moldels"
-
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -13,18 +11,22 @@ var (
 	DB *gorm.DB
 )
 
-// InitDB starts the data base
-func InitDB() error {
-	var err error
-	DB, err = gorm.Open(mysql.Open(""), &gorm.Config{})
-	if err != nil {
-		return err
-	}
+// ConectDB starts the data base
+func ConectDB() (*gorm.DB, error) {
+	strConection := "{usuario}:{senha}@/{seu-bd}?charset=utf8&parseTime=True&loc=Local"
 
-	// Auto migration
-	err = DB.AutoMigrate(&models.Task{})
+	db, err := gorm.Open(mysql.Open(strConection), &gorm.Config{})
+	if err != nil {
+		return nil, err
+	}
+	return db, nil
+}
+
+// CloseDB close db conection
+func CloseDB(db *gorm.DB) error {
+	sqlDB, err := db.DB()
 	if err != nil {
 		return err
 	}
-	return nil
+	return sqlDB.Close()
 }

@@ -6,21 +6,31 @@ import (
 )
 
 // TaskServives implements  the logic of businnes to tasks
-type TaskServive struct {
+type TaskService struct {
 	repository repositories.TaskRepository
 }
 
 // NewTaskService creates a new instance of TaskService
-func NewTaskService(repository repositories.TaskRepository) *TaskServive {
-	return &TaskServive{repository}
+func NewTaskService(repository repositories.TaskRepository) *TaskService {
+	return &TaskService{repository}
 }
 
 // CreateTasks creats a new task
-func (s *TaskServive) GetTasks() ([]models.Task, error) {
+func (s *TaskService) GetTasks() ([]models.Task, error) {
 	return s.repository.GetAll()
 }
 
 // GetTaskByID returns a tasks by ID
 func (s *TaskService) GetTaskByID(id uint) (*models.Task, error) {
-	return s.repository.GetTaskByID{id}
+	return s.repository.GetByID(id)
+}
+
+// UpdateTask updates a task
+func (s *TaskService) UpdateTask(task *models.Task) error {
+	return s.repository.Update(task)
+}
+
+// DeleteTask delets a task by ID
+func (s *TaskService) DeleteTask(id uint) error {
+	return s.repository.Delete(id)
 }

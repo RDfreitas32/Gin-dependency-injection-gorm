@@ -14,7 +14,7 @@ type TaskController struct {
 	service services.TaskService
 }
 
-// NewTaskController creates a new instance of TaskCntroller
+// NewTaskController creates a new instance of TaskController
 func NewTaskController(service services.TaskService) *TaskController {
 	return &TaskController{service}
 }

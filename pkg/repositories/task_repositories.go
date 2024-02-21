@@ -20,7 +20,7 @@ type taskRepository struct {
 	db *gorm.DB
 }
 
-// NewTaskRepository cries a new instance from taskRepository
+// NewTaskRepository creates a new instance by taskRepository
 func NewTaskRepository(db *gorm.DB) TaskRepository {
 	return &taskRepository{db}
 }
